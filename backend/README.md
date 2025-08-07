@@ -30,6 +30,9 @@ npm install
 
    # Server Configuration
    PORT=3001
+
+   # Frontend
+   NEXT_PUBLIC_FRONTEND_URL=http://localhost:3000
    ```
 
 3. **Database Setup:**

@@ -22,7 +22,7 @@ npm install
 
     ```env
     # Backend API URL
-    BACKEND_URL=http://localhost:3001
+    NEXT_PUBLIC_BACKEND_URL=http://localhost:3001
     ```
 
 3. **Start the development server:**
