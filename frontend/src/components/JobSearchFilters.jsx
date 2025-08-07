@@ -196,7 +196,7 @@ const JobSearchFilters = () => {
 							value={filters.salaryRange}
 							onChange={handleSalaryRangeChange}
 							min={10}
-							max={200}
+							max={800}
 							step={10}
 							minRange={10}
 							size="sm"
