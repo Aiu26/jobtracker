@@ -23,10 +23,12 @@ export const JobsProvider = ({ children }) => {
 			setLoading(true);
 			console.log("🔍 Fetching jobs from API...");
 			console.log(
-				`🌐 Making request to: ${process.env.BACKEND_URL}/jobs`
+				`🌐 Making request to: ${process.env.NEXT_PUBLIC_BACKEND_URL}/jobs`
 			);
 
-			const response = await fetch(`${process.env.BACKEND_URL}/jobs`);
+			const response = await fetch(
+				`${process.env.NEXT_PUBLIC_BACKEND_URL}/jobs`
+			);
 			console.log("📡 Response status:", response.status);
 			console.log("📡 Response headers:", response.headers);
 
