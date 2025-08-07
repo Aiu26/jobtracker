@@ -60,6 +60,85 @@ const JobCards = () => {
 		);
 	}
 
+	// Function to render company logo
+	const renderCompanyLogo = (job) => {
+		const companyName = job.companyName?.toLowerCase();
+		
+		// Handle dummy data with logo paths
+		if (job.logo && job.logo.startsWith('/')) {
+			return (
+				<img
+					src={job.logo}
+					alt={job.companyName}
+					style={{
+						width: "48px",
+						height: "48px",
+						borderRadius: "50%",
+						objectFit: "contain",
+					}}
+				/>
+			);
+		}
+		
+		// Handle backend data with specific company logos
+		if (companyName === "swiggy") {
+			return (
+				<img
+					src="/swiggy.png"
+					alt="Swiggy"
+					style={{
+						width: "48px",
+						height: "48px",
+						borderRadius: "50%",
+						objectFit: "contain",
+					}}
+				/>
+			);
+		} else if (companyName === "tesla") {
+			return (
+				<img
+					src="/tesla.png"
+					alt="Tesla"
+					style={{
+						width: "48px",
+						height: "48px",
+						borderRadius: "50%",
+						objectFit: "contain",
+					}}
+				/>
+			);
+		} else if (companyName === "amazon") {
+			return (
+				<img
+					src="/amazon.png"
+					alt="Amazon"
+					style={{
+						width: "48px",
+						height: "48px",
+						borderRadius: "50%",
+						objectFit: "contain",
+					}}
+				/>
+			);
+		} else {
+			// Fallback to avatar with company initial
+			return (
+				<Avatar
+					size="lg"
+					radius="xl"
+					style={{
+						backgroundColor: "#f8f9fa",
+						color: "#495057",
+						fontWeight: "bold",
+						fontSize: "18px",
+					}}
+				>
+					{job.companyName?.charAt(0) || "J"}
+				</Avatar>
+			);
+		}
+	};
+
 	return (
 		<Container
 			size="xl"
@@ -117,68 +196,7 @@ const JobCards = () => {
 									align="flex-start"
 									style={{ marginBottom: "1rem" }}
 								>
-									{(() => {
-										const companyName =
-											job.companyName?.toLowerCase();
-										if (companyName === "swiggy") {
-											return (
-												<img
-													src="/swiggy.png"
-													alt="Swiggy"
-													style={{
-														width: "48px",
-														height: "48px",
-														borderRadius: "50%",
-														objectFit: "contain",
-													}}
-												/>
-											);
-										} else if (companyName === "tesla") {
-											return (
-												<img
-													src="/tesla.png"
-													alt="Tesla"
-													style={{
-														width: "48px",
-														height: "48px",
-														borderRadius: "50%",
-														objectFit: "contain",
-													}}
-												/>
-											);
-										} else if (companyName === "amazon") {
-											return (
-												<img
-													src="/amazon.png"
-													alt="Amazon"
-													style={{
-														width: "48px",
-														height: "48px",
-														borderRadius: "50%",
-														objectFit: "contain",
-													}}
-												/>
-											);
-										} else {
-											return (
-												<Avatar
-													size="lg"
-													radius="xl"
-													style={{
-														backgroundColor:
-															"#f8f9fa",
-														color: "#495057",
-														fontWeight: "bold",
-														fontSize: "18px",
-													}}
-												>
-													{job.companyName?.charAt(
-														0
-													) || "J"}
-												</Avatar>
-											);
-										}
-									})()}
+									{renderCompanyLogo(job)}
 									<Badge
 										color="blue"
 										variant="light"
@@ -224,6 +242,12 @@ const JobCards = () => {
 									style={{ marginBottom: "1rem" }}
 								>
 									<Group gap="xs">
+										<IconUser size={16} color="#6c757d" />
+										<Text size="sm" c="dimmed">
+											{job.experience || "1-3 yr Exp"}
+										</Text>
+									</Group>
+									<Group gap="xs">
 										<IconMapPin size={16} color="#6c757d" />
 										<Text size="sm" c="dimmed">
 											{job.location}
@@ -255,19 +279,6 @@ const JobCards = () => {
 											L
 										</Text>
 									</Group>
-								</Group>
-
-								{/* Application Deadline */}
-								<Group
-									gap="xs"
-									style={{ marginBottom: "1rem" }}
-								>
-									<Text size="sm" c="dimmed">
-										Deadline:{" "}
-										{new Date(
-											job.applicationDeadline
-										).toLocaleDateString()}
-									</Text>
 								</Group>
 
 								{/* Description */}

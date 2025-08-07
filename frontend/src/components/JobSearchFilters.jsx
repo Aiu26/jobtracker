@@ -27,7 +27,7 @@ const JobSearchFilters = () => {
 		useJobFilter();
 
 	const formatSalary = (value) => {
-		return `₹${value}k`;
+		return `₹${value}L`;
 	};
 
 	const handleSearchChange = (value) => {
@@ -51,8 +51,8 @@ const JobSearchFilters = () => {
 		filters.searchQuery ||
 		filters.location ||
 		filters.jobType ||
-		filters.salaryRange[0] !== 10 ||
-		filters.salaryRange[1] !== 200;
+		filters.salaryRange[0] !== 0 ||
+		filters.salaryRange[1] !== 20;
 
 	return (
 		<Container
@@ -144,8 +144,8 @@ const JobSearchFilters = () => {
 					<Select
 						placeholder="Job type"
 						data={[
-							{ value: "full-time", label: "Full Time" },
-							{ value: "part-time", label: "Part Time" },
+							{ value: "full time", label: "Full Time" },
+							{ value: "part time", label: "Part Time" },
 							{ value: "contract", label: "Contract" },
 							{ value: "internship", label: "Internship" },
 							{ value: "freelance", label: "Freelance" },
@@ -182,7 +182,7 @@ const JobSearchFilters = () => {
 							c="dimmed"
 							style={{ marginBottom: "4px" }}
 						>
-							Salary Per Month
+							Salary Range (LPA)
 						</Text>
 						<Text
 							size="sm"
@@ -195,10 +195,10 @@ const JobSearchFilters = () => {
 						<RangeSlider
 							value={filters.salaryRange}
 							onChange={handleSalaryRangeChange}
-							min={10}
-							max={800}
-							step={10}
-							minRange={10}
+							min={0}
+							max={20}
+							step={1}
+							minRange={1}
 							size="sm"
 							color="violet"
 							styles={{

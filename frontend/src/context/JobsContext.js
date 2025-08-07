@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { jobsData } from "../data/jobsData";
 
 const JobsContext = createContext();
 
@@ -40,15 +41,23 @@ export const JobsProvider = ({ children }) => {
 				);
 			}
 
-			const data = await response.json();
-			console.log("✅ Fetched jobs successfully:", data);
-			console.log("📊 Number of jobs:", data.length);
-			console.log("📋 Jobs data:", JSON.stringify(data, null, 2));
+			const backendJobs = await response.json();
+			console.log("✅ Fetched jobs successfully:", backendJobs);
+			console.log("📊 Number of backend jobs:", backendJobs.length);
+			console.log("📋 Backend jobs data:", JSON.stringify(backendJobs, null, 2));
 
-			setJobs(data);
+			// Combine dummy data with backend data
+			// Use dummy data as initial jobs, then add backend jobs
+			const combinedJobs = [...jobsData, ...backendJobs];
+			console.log("📊 Total jobs (dummy + backend):", combinedJobs.length);
+			
+			setJobs(combinedJobs);
 		} catch (err) {
 			console.error("❌ Error fetching jobs:", err);
 			console.error("❌ Error details:", err.message);
+			// If backend fails, still show dummy data
+			console.log("🔄 Falling back to dummy data only");
+			setJobs(jobsData);
 			setError(err.message);
 		} finally {
 			setLoading(false);
@@ -60,8 +69,13 @@ export const JobsProvider = ({ children }) => {
 		fetchJobs();
 	};
 
-	// Fetch jobs on component mount
+	// Initialize with dummy data and fetch backend data
 	useEffect(() => {
+		// Start with dummy data immediately
+		setJobs(jobsData);
+		setLoading(false);
+		
+		// Then fetch backend data
 		fetchJobs();
 	}, []);
 
