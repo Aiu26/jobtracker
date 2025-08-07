@@ -1,0 +1,29 @@
+{
+  "name": "jobtracker",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@mantine/core": "^8.2.3",
+    "@mantine/dates": "^8.2.3",
+    "@mantine/form": "^8.2.3",
+    "@mantine/hooks": "^8.2.3",
+    "@mantine/modals": "^8.2.3",
+    "@tabler/icons-react": "^3.34.1",
+    "dayjs": "^1.11.13",
+    "next": "15.4.6",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-hook-form": "^7.62.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "nodemon": "^3.1.10",
+    "tailwindcss": "^4"
+  }
+}
